@@ -6,7 +6,7 @@
 5. docker-compose exec app php artisan migrate
 6. docker-compose exec app php artisan queue:listen
 
-// to make it easier for you to deploy
+// to make it easier for you to deploy (.env variables)
 ``` json
     {
         "db_config": {
