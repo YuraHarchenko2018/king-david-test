@@ -1,7 +1,12 @@
 # Instalation local
 1. cp .env.example .env
-2. Modify .env variables (
-    // to make it easier for you to deploy
+2. Modify .env variables
+3. docker run --rm -v $(pwd):/app composer install
+4. docker-compose up -d --build
+5. docker-compose exec app php artisan migrate
+6. docker-compose exec app php artisan queue:listen
+
+// to make it easier for you to deploy
 ``` json
     {
         "db_config": {
@@ -16,12 +21,6 @@
         "IMAGE_ENGINE": "'folk' or 'intervention'"
     }
 ```
-)
-
-3. docker run --rm -v $(pwd):/app composer install
-4. docker-compose up -d --build
-5. docker-compose exec app php artisan migrate
-6. docker-compose exec app php artisan queue:listen
 
 ### Have two image-engine "folk' and "intervention", which working async.
 ### Have full needed statistic. And realized other conditions.
