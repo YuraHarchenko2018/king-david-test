@@ -17,6 +17,10 @@ class UploadController extends Controller
             $request->image->storeAs('image', $uid . '/' . $image_name);
 
             TaskImageAfterLoadJob::dispatch($image_name, $uid);
+
+            return response(["status" => "success"], 201);
         }
+
+        return response(["status" => "error"], 400);
     }
 }

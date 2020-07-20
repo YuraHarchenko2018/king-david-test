@@ -27,7 +27,7 @@ Route::post('attachLabels/{id}', 'TasksController@attachLabels');
 Route::resource('label', 'LabelsController');
 Route::resource('task-statuses', 'TaskStatusesController');
 
-Route::post('statistics/totalTask', 'StatisticController@totalTask');
-Route::post('statistics/totalDoneTask', 'StatisticController@totalDoneTask');
-Route::post('statistics/progressInPercentage', 'StatisticController@progressInPercentage');
-Route::post('statistics/bestUserByLastWeek', 'StatisticController@bestUserByLastWeek');
+Route::get('statistics/totalTask', 'StatisticController@totalTask');
+Route::get('statistics/totalDoneTask', 'StatisticController@totalDoneTask');
+Route::get('statistics/progressInPercentage', 'StatisticController@progressInPercentage');
+Route::get('statistics/bestUserByLastWeek', 'StatisticController@bestUserByLastWeek');
