@@ -2,16 +2,20 @@
 1. cp .env.example .env
 2. Modify .env variables (
     // to make it easier for you to deploy
-    set => {
-        DB_CONNECTION=mysql
-        DB_HOST=db
-        DB_PORT=3306
-        DB_DATABASE=laravel
-        DB_USERNAME=root
-        DB_PASSWORD=1111
-    }, 
-    set => randon string for JWT_SECRET_KEY
-    set => 'folk' or 'intervention' for IMAGE_ENGINE
+``` json
+    {
+        "db_config": {
+            DB_CONNECTION=mysql
+            DB_HOST=db
+            DB_PORT=3306
+            DB_DATABASE=laravel
+            DB_USERNAME=root
+            DB_PASSWORD=1111
+        },
+        "JWT_SECRET_KEY": "randon string",
+        "IMAGE_ENGINE": "'folk' or 'intervention'"
+    }
+```
 )
 3. docker run --rm -v $(pwd):/app composer install
 4. docker-compose up -d --build
