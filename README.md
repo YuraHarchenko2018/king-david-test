@@ -17,6 +17,7 @@
     }
 ```
 )
+
 3. docker run --rm -v $(pwd):/app composer install
 4. docker-compose up -d --build
 5. docker-compose exec app php artisan migrate
