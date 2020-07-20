@@ -2,20 +2,45 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use App\Traits\JWTHelperTrait;
+use App\Repositories\UsersRepository;
 
-class Authenticate extends Middleware
+class Authenticate
 {
+    use JWTHelperTrait;
+
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
+     * Handle an incoming request.
+     * Created a Auth
      * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * @param  \Closure  $next
+     * @return mixed
      */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        $jwt = $request->header('Authorization') ?? '';
+
+        if(!empty($jwt)) {
+            $jwt_decoded = $this->jwtDecode($jwt);
+
+            if($jwt_decoded) {
+                $user_id = $jwt_decoded['id'];
+                $userRepo = new UsersRepository();
+                $user = $userRepo->getUserByID($user_id);
+        
+                if(!empty($user)) {
+                    return $next($request);
+                } else {
+                    $message = json_encode($user); // "Not Authorized";
+                }
+            } else {
+                $message = "Failed decode a JWT toket";
+            }
+        } else {
+            $message = "Empty JWT token or not exist";
         }
+
+        return response(['status' => 'error', 'message' => $message, 'jwt' => $jwt], 400);
     }
 }
