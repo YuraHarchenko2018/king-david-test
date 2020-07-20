@@ -22,8 +22,8 @@
 5. docker-compose exec app php artisan migrate
 6. docker-compose exec app php artisan queue:listen
 
-## Have two image-engine "folk' and "intervention", which working async.
-## Have full needed statistic. And realized other conditions.
+### Have two image-engine "folk' and "intervention", which working async.
+### Have full needed statistic. And realized other conditions.
 
-## I could not use "policy" in my project.
-## I can't install "mongo" for my project. I tried.
+### I could not use "policy" in my project.
+### I can't install "mongo" for my project. I tried.
